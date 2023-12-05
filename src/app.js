@@ -1,8 +1,8 @@
 const express = require('express');
-const jwt = require('jsonwebtoken');
-const { User } = require('./models');
-// const authMiddleware = require('./middlewares/auth.middleware');
+const authMiddleware = require('./middlewares/auth.middleware');
 const validateUserFiled = require('./middlewares/validateUserFiled.middleware');
+const validateNewUser = require('./middlewares/validateNewUser.middleware');
+const controller = require('./controllers/user.controller');
 
 // ...
 
@@ -16,23 +16,9 @@ app.get('/', (_request, response) => {
 app.use(express.json());
 
 // ...
-app.post('/login', validateUserFiled, async (req, res) => {
-  const { email } = req.body;
-  const user = await User.findOne({ where: { email } });
+app.post('/login', validateUserFiled, controller.validateUserController);
 
-  const token = jwt.sign({
-    sub: user.id,
-    role: 'user',
-  }, process.env.JWT_SECRET, {
-    expiresIn: '7d',
-  });
-
-  return res.status(200).json({ token });
-});
-
-// app.post('/user', authMiddleware, async (req, res) => {
-
-// });
+app.post('/user', authMiddleware, validateNewUser, controller.validateNewUserController);
 
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`

@@ -6,6 +6,15 @@ const validateUserService = async (email) => {
   return user;
 };
 
+const validateNewUserService = async (id) => {
+  const userExists = await User.findByPk(id);
+
+  if (!userExists) return { message: 'User already registered' };
+
+  return { message: 'SUCCESSFUL' };
+};
+
 module.exports = { 
   validateUserService,
+  validateNewUserService,
 };
