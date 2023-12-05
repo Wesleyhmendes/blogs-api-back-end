@@ -6,12 +6,17 @@ const validateUserService = async (email) => {
   return user;
 };
 
-const validateNewUserService = async (id) => {
-  const userExists = await User.findByPk(id);
+const validateNewUserService = async (userInfos) => {
+  const { displayName, email, password, image } = userInfos;
+  const userExists = await User.findOne({ where: { email } });
 
-  if (!userExists) return { message: 'User already registered' };
+  if (userExists) return { message: 'User already registered' };
 
-  return { message: 'SUCCESSFUL' };
+  try {
+    return User.create({ displayName, email, password, image });
+  } catch (error) {
+    return ({ message: 'Erro ao cadastrar uma conta!' });
+  }
 };
 
 module.exports = { 

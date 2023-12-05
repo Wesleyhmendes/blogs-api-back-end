@@ -17,13 +17,21 @@ const validateUserController = async (req, res) => {
 };
 
 const validateNewUserController = async (req, res) => {
-  const newUser = await service.validateNewUserService(res.locals.user.id);
+  const userInfos = req.body;
+  const newUser = await service.validateNewUserService(userInfos);
 
   if (newUser.message === 'User already registered') {
     return res.status(409).json(newUser);
   }
 
-  return newUser;
+  const token = jwt.sign({
+    sub: newUser.id,
+    role: 'user',
+  }, process.env.JWT_SECRET, {
+    expiresIn: '7d',
+  });
+
+  return res.status(201).json({ token });
 };
 
 module.exports = { 
