@@ -30,6 +30,10 @@ app.post('/login', validateUserFiled, async (req, res) => {
   return res.status(200).json({ token });
 });
 
+// app.post('/user', authMiddleware, async (req, res) => {
+
+// });
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
