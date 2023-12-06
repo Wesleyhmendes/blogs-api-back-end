@@ -10,22 +10,14 @@ const validateUserController = async (req, res) => {
   }, process.env.JWT_SECRET, {
     expiresIn: '7d',
   });
-  
   return res.status(200).json({ token });
 };
 
 const validateNewUserController = async (req, res) => {
   const userInfos = req.body;
   const newUser = await service.validateNewUserService(userInfos);
-
-  if (newUser.message === 'User already registered') {
-    return res.status(409).json(newUser);
-  }
-
-  const token = jwt.sign({
-    sub: newUser.id,
-    role: 'user',
-  }, process.env.JWT_SECRET, {
+  if (newUser.message === 'User already registered') return res.status(409).json(newUser);
+  const token = jwt.sign({ sub: newUser.id, role: 'user' }, process.env.JWT_SECRET, { 
     expiresIn: '7d',
   });
   return res.status(201).json({ token });
@@ -43,18 +35,9 @@ const getUserByIdController = async (req, res) => {
   return res.status(200).json(user);
 };
 
-const createNewCategoryController = async (req, res) => {
-  const { name } = req.body;
-  if (!name) return res.status(400).json({ message: '"name" is required' });
-
-  const newCategory = await service.createNewCategoryService(name);
-  return res.status(201).json(newCategory);
-};
-
 module.exports = { 
   validateUserController,
   validateNewUserController,
   getUsersController,
   getUserByIdController,
-  createNewCategoryController,
 };

@@ -1,4 +1,4 @@
-const { User, Category } = require('../models');
+const { User } = require('../models');
 
 const validateUserService = async (email) => {
   const user = await User.findOne({ where: { email } });
@@ -35,12 +35,9 @@ const getUSerByIdService = async (id) => {
   return user;
 };
 
-const createNewCategoryService = async (name) => (Category.create({ name }));
-
 module.exports = { 
   validateUserService,
   validateNewUserService,
   getUsersService,
   getUSerByIdService,
-  createNewCategoryService,
 };

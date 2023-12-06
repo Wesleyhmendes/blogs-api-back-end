@@ -2,7 +2,8 @@ const express = require('express');
 const authMiddleware = require('./middlewares/auth.middleware');
 const validateUserFiled = require('./middlewares/validateUserFiled.middleware');
 const validateNewUser = require('./middlewares/validateNewUser.middleware');
-const controller = require('./controllers/user.controller');
+const userController = require('./controllers/user.controller');
+const categoryController = require('./controllers/category.controller');
 
 // ...
 
@@ -16,15 +17,17 @@ app.get('/', (_request, response) => {
 app.use(express.json());
 
 // ...
-app.post('/login', validateUserFiled, controller.validateUserController);
+app.post('/login', validateUserFiled, userController.validateUserController);
 
-app.post('/user', validateNewUser, controller.validateNewUserController);
+app.post('/user', validateNewUser, userController.validateNewUserController);
 
-app.get('/user', authMiddleware, controller.getUsersController);
+app.get('/user', authMiddleware, userController.getUsersController);
 
-app.get('/user/:id', authMiddleware, controller.getUserByIdController);
+app.get('/user/:id', authMiddleware, userController.getUserByIdController);
 
-app.post('/categories', authMiddleware, controller.createNewCategoryController);
+app.post('/categories', authMiddleware, categoryController.createNewCategoryController);
+
+app.get('/categories', authMiddleware, categoryController.getAllCategoriesController);
 
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
