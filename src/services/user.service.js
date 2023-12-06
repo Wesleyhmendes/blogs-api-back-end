@@ -13,7 +13,9 @@ const validateNewUserService = async (userInfos) => {
   if (userExists) return { message: 'User already registered' };
 
   try {
-    return User.create({ displayName, email, password, image });
+    const result = await User.create({ displayName, email, password, image });
+
+    return result;
   } catch (error) {
     return ({ message: 'Erro ao cadastrar uma conta!' });
   }
