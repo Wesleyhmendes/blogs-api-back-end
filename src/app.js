@@ -22,6 +22,8 @@ app.post('/user', validateNewUser, controller.validateNewUserController);
 
 app.get('/user', authMiddleware, controller.getUsersController);
 
+app.get('/user/:id', authMiddleware, controller.getUserByIdController);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;

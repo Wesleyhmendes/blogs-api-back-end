@@ -40,8 +40,19 @@ const getUsersController = async (_req, res) => {
   return res.status(200).json(allUsers);
 };
 
+const getUserByIdController = async (req, res) => {
+  const { id } = req.params;
+
+  const user = await service.getUSerByIdService(id);
+
+  if (user.message) return res.status(404).json(user);
+
+  return res.status(200).json(user);
+};
+
 module.exports = { 
   validateUserController,
   validateNewUserController,
   getUsersController,
+  getUserByIdController,
 };

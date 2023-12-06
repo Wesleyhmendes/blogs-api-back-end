@@ -27,8 +27,17 @@ const getUsersService = async () => {
   return users;
 };
 
+const getUSerByIdService = async (id) => {
+  const user = await User.findOne({ where: { id }, attributes: { exclude: ['password'] } });
+
+  if (!user) return { message: 'User does not exist' };
+
+  return user;
+};
+
 module.exports = { 
   validateUserService,
   validateNewUserService,
   getUsersService,
+  getUSerByIdService,
 };
