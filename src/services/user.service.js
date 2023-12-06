@@ -19,7 +19,16 @@ const validateNewUserService = async (userInfos) => {
   }
 };
 
+const getUsersService = async () => {
+  const users = await User.findAll({
+    attributes: { exclude: ['password'] },
+  });
+
+  return users;
+};
+
 module.exports = { 
   validateUserService,
   validateNewUserService,
+  getUsersService,
 };

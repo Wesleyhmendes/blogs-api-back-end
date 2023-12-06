@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 module.exports = async (req, res, next) => {
   const { authorization } = req.headers;
 
-  if (!authorization) return res.status(401).end();
+  if (!authorization) return res.status(401).json({ message: 'Token not found' });
 
   const [, token] = authorization.split(' ');
 
@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
     };
   } catch (err) {
     console.error(err.message);
-    return res.sendStatus(401);
+    return res.status(401).json({ message: 'Expired or invalid token' });
   }
 
   next();

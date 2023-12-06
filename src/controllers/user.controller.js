@@ -34,7 +34,14 @@ const validateNewUserController = async (req, res) => {
   return res.status(201).json({ token });
 };
 
+const getUsersController = async (_req, res) => {
+  const allUsers = await service.getUsersService();
+
+  return res.status(200).json(allUsers);
+};
+
 module.exports = { 
   validateUserController,
   validateNewUserController,
+  getUsersController,
 };
