@@ -26,8 +26,22 @@ const getPostByIdController = async (req, res) => {
   return res.status(200).json(post);
 };
 
+const updatePostController = async (req, res) => {
+  const newPost = req.body;
+  const { id } = req.params;
+  const userId = res.locals.user.id;
+
+  const updatedPost = await service.updatePostService(newPost, id, userId);
+  const { status, message } = updatedPost;
+
+  if (message) return res.status(status).json({ message });
+  
+  return res.status(200).json(updatedPost);
+};
+
 module.exports = {
   createNewPostController,
   getAllPostsController,
   getPostByIdController,
+  updatePostController,
 };
