@@ -35,6 +35,8 @@ app.get('/categories', authMiddleware, categoryController.getAllCategoriesContro
 
 app.post('/post', authMiddleware, validatePostFields, blogController.createNewPostController);
 
+app.get('/post', authMiddleware, blogController.getAllPostsController);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
