@@ -40,8 +40,9 @@ const getUserByIdController = async (req, res) => {
   return res.status(200).json(user);
 };
 
-const deleteUserByIdControler = async (_req, res) => {
-  const { id } = res.user.locals;
+const deleteUserByIdController = async (_req, res) => {
+  const { id } = res.locals.user;
+  console.log(res.locals.user);
 
   const result = await service.deleteUserByIdService(id);
 
@@ -53,5 +54,5 @@ module.exports = {
   validateNewUserController,
   getUsersController,
   getUserByIdController,
-  deleteUserByIdControler,
+  deleteUserByIdController,
 };

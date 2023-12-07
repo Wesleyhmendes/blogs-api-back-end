@@ -1,5 +1,6 @@
-const { BlogPost } = require('../models');
-const { getPostByIdService } = require('./blogPost.show.service');
+const { Op } = require('sequelize');
+const { BlogPost, Category, PostCategory, User } = require('../models');
+const { getPostByIdService, getAllPostsService } = require('./blogPost.show.service');
 
 const updatePostService = async (newPost, postId, userId) => {
   const validatePost = await BlogPost.findByPk(postId);
@@ -27,7 +28,29 @@ const deletePostByIdService = async (postId, userId) => {
   return { status: 204 };
 };
 
+const searchPostsService = async (q) => {
+  if (!q) {
+    const response = await getAllPostsService();
+    return response;
+  }
+
+  const result = await BlogPost.findAll({
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category,
+        as: 'categories', 
+        through: { model: PostCategory, as: 'posts_categories', attributes: [] },
+      }],
+    attributes: { exclude: ['user_id'] },
+    where: { [Op.or]: [{ title: { [Op.like]: `%${q}%` } }, { content: { [Op.like]: `%${q}%` } }] },
+  });
+    
+  if (!result.length) return [];
+  return result;
+};
+
 module.exports = {
   updatePostService,
   deletePostByIdService,
+  searchPostsService,
 };

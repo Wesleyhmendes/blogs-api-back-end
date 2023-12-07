@@ -37,14 +37,15 @@ app.post('/post', authMiddleware, validatePostFields, blogController.createNewPo
 
 app.get('/post', authMiddleware, blogController.getAllPostsController);
 
-app.get('/post/:id', authMiddleware, blogController.getPostByIdController);
-
 app.put('/post/:id', authMiddleware, blogController.updatePostController);
 
 app.delete('/post/:id', authMiddleware, blogController.deletePostByIdController);
 
-app.delete('/user/me', authMiddleware, userController.deleteUserByIdControler);
+app.delete('/user/me', authMiddleware, userController.deleteUserByIdController);
 
+app.get('/post/search', authMiddleware, blogController.searchPostsController);
+
+app.get('/post/:id', authMiddleware, blogController.getPostByIdController);
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
