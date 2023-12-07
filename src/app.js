@@ -37,6 +37,8 @@ app.post('/post', authMiddleware, validatePostFields, blogController.createNewPo
 
 app.get('/post', authMiddleware, blogController.getAllPostsController);
 
+app.get('/post/:id', authMiddleware, blogController.getPostByIdController);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;

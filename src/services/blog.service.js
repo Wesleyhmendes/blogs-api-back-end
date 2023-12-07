@@ -35,7 +35,26 @@ const getAllPostsService = async () => {
   return posts;
 };
 
+const getPostByIdService = async (id) => {
+  const posts = await BlogPost.findByPk(id, { include: [
+    { model: User,
+      as: 'user',
+      attributes: { exclude: ['password'] },
+    },
+    { model: Category,
+      as: 'categories',
+      through: { model: PostCategory, as: 'posts_categories', attributes: [],
+      },
+    }],
+  attributes: { exclude: ['user_id'] },
+  });
+
+  if (!posts) return { message: 'Post does not exist' };
+  return posts;
+};
+
 module.exports = {
   createNewPostService,
   getAllPostsService,
+  getPostByIdService,
 };
