@@ -21,7 +21,7 @@ const validateNewUserController = async (req, res) => {
   const newUser = await service.validateNewUserService(userInfos);
 
   if (newUser.message === 'User already registered') return res.status(409).json(newUser);
-  const token = jwt.sign({ sub: newUser.id, role: 'user' }, process.env.JWT_SECRET, { 
+  const token = jwt.sign({ sub: newUser.id, role: 'user' }, process.env.JWT_SECRET, {
     expiresIn: '7d',
   });
 
@@ -40,9 +40,18 @@ const getUserByIdController = async (req, res) => {
   return res.status(200).json(user);
 };
 
-module.exports = { 
+const deleteUserByIdControler = async (_req, res) => {
+  const { id } = res.user.locals;
+
+  const result = await service.deleteUserByIdService(id);
+
+  return res.status(result.status).end();
+};
+
+module.exports = {
   validateUserController,
   validateNewUserController,
   getUsersController,
   getUserByIdController,
+  deleteUserByIdControler,
 };

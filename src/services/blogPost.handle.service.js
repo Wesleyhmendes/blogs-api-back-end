@@ -4,7 +4,7 @@ const { getPostByIdService } = require('./blogPost.show.service');
 const updatePostService = async (newPost, postId, userId) => {
   const validatePost = await BlogPost.findByPk(postId);
 
-  if (validatePost.id !== userId) return { status: 401, message: 'Unauthorized user' };
+  if (validatePost.user_id !== userId) return { status: 401, message: 'Unauthorized user' };
   if (!newPost.title || !newPost.content) {
     return { status: 400, message: 'Some required fields are missing' };
   }
@@ -18,8 +18,6 @@ const updatePostService = async (newPost, postId, userId) => {
 
 const deletePostByIdService = async (postId, userId) => {
   const validatePost = await BlogPost.findByPk(postId);
-
-  console.log(validatePost);
 
   if (!validatePost) return { status: 404, message: 'Post does not exist' };
   if (validatePost.user_id !== userId) return { status: 401, message: 'Unauthorized user' };

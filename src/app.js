@@ -43,6 +43,8 @@ app.put('/post/:id', authMiddleware, blogController.updatePostController);
 
 app.delete('/post/:id', authMiddleware, blogController.deletePostByIdController);
 
+app.delete('/user/me', authMiddleware, userController.deleteUserByIdControler);
+
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
