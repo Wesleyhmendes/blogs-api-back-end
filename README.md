@@ -58,6 +58,8 @@ Além disso, é necessária a utilização de categorias de posts, trabalhando a
 <details>
   <summary><strong>🔧 Instalação</strong></summary>
 
+<br />
+
 1. Clone o repositório
   * `git clone git@github.com:Wesleyhmendes/blogs-api-back-end.git`.
   * Entre na pasta do repositório que você acabou de clonar:
@@ -78,6 +80,9 @@ Além disso, é necessária a utilização de categorias de posts, trabalhando a
 
 <details>
   <summary><strong>📋 Requisitos</strong></summary>
+
+<br />
+
 
 **1 - Crie migrations para as tabelas `users`, `categories`, `blog_posts`, `posts_categories`**
 <br />
