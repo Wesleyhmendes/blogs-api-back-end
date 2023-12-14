@@ -76,6 +76,66 @@ Além disso, é necessária a utilização de categorias de posts, trabalhando a
 <br />
 </details>
 
+<details>
+  <summary><strong>📋 Requisitos</strong></summary>
+
+**1 - Crie migrations para as tabelas `users`, `categories`, `blog_posts`, `posts_categories`**
+<br />
+<br />
+**2 - Crie o modelo `User` em `src/models/User.js` com as propriedades corretas**
+<br />
+<br />
+**3 - Sua aplicação deve ter o endpoint POST `/login`**
+<br />
+<br />
+**4 - Sua aplicação deve ter o endpoint POST `/user`**
+<br />
+<br />
+**5 - Sua aplicação deve ter o endpoint GET `/user`**
+<br />
+<br />
+**6 - Sua aplicação deve ter o endpoint GET `/user/:id`**
+<br />
+<br />
+**7 - Crie o modelo `Category` em `src/models/Category.js` com as propriedades corretas**
+<br />
+<br />
+**8 - Sua aplicação deve ter o endpoint POST `/categories`**
+<br />
+<br />
+**9 - Sua aplicação deve ter o endpoint GET `/categories`**
+<br />
+<br />
+**10 - Crie o modelo `BlogPost` em `src/models/BlogPost.js` com as propriedades e associações corretas**
+<br />
+<br />
+**11 - Crie o modelo `PostCategory` em `src/models/PostCategory.js` com as propriedades e associações corretas**
+<br />
+<br />
+**12 - Sua aplicação deve ter o endpoint POST `/post`**
+<br />
+<br />
+**13 - Sua aplicação deve ter o endpoint GET `/post`**
+<br />
+<br />
+**14 - Sua aplicação deve ter o endpoint GET `/post/:id`**
+<br />
+<br />
+**15 - Sua aplicação deve ter o endpoint PUT `/post/:id`**
+<br />
+<br />
+**16 - Sua aplicação deve ter o endpoint DELETE `/post/:id`**
+<br />
+<br />
+**17 - Sua aplicação deve ter o endpoint DELETE `/user/me`**
+<br />
+<br />
+**18 - Sua aplicação deve ter o endpoint GET `/post/search?q=:searchTerm`**
+<br />
+<br />
+</details>
+
+
 ## 🛠️ Construído com
 
 Mencione as ferramentas que você usou para criar seu projeto
