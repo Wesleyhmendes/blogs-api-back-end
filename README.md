@@ -59,9 +59,9 @@ Além disso, é necessária a utilização de categorias de posts, trabalhando a
   <summary><strong>🔧 Instalação</strong></summary>
 
 1. Clone o repositório
-  * `git clone git@github.com:tryber/sd-033-a-project-blogs-api.git`.
+  * `git clone git@github.com:Wesleyhmendes/blogs-api-back-end.git`.
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-033-a-project-blogs-api`
+    * `blogs-api-back-end.git`
 
 2. Instale as dependências [**Caso existam**]
   * `npm install`
